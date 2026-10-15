@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MonacoEditor from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import Select from "react-select";
 
 const CodeEditor = () => {
@@ -10,30 +10,75 @@ const CodeEditor = () => {
     { value: "cpp", label: "C++" },
   ];
 
-  const [selectedLanguage, setSelectedLanguage] = useState(options[0]);
+  const [selectOption, setSelectedOption] = useState(options[0]);
+
+  const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    backgroundColor: "#18181b",
+    borderColor: "#3f3f46",
+    color: "white",
+    boxShadow: "none",
+    "&:hover": {
+      borderColor: "#9333ea",
+    },
+  }),
+
+  singleValue: (provided) => ({
+    ...provided,
+    color: "white",
+  }),
+
+  menu: (provided) => ({
+    ...provided,
+    backgroundColor: "#18181b",
+  }),
+
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isFocused ? "#9333ea" : "#18181b",
+    color: "white",
+    cursor: "pointer",
+  }),
+
+  placeholder: (provided) => ({
+    ...provided,
+    color: "#a1a1aa",
+  }),
+
+  input: (provided) => ({
+    ...provided,
+    color: "white",
+  }),
+};
 
   return (
-    <div
-      className="main flex"
-      style={{ height: "calc(100vh - 90px)" }}
-    >
-      <div className="left w-1/2 h-full p-4">
-        <div className="mb-4 w-60">
-          <Select
-            value={selectedLanguage}
-            onChange={setSelectedLanguage}
-            options={options}
+    <>
+      <div
+        className="main flex items-center justify-between"
+        style={{ height: "calc(100vh - 90px)" }}
+      >
+        <div className="left h-[80%] w-[50%]">
+          <div className="mb-4 w-[250px]">
+            <Select
+              value={selectOption}
+              onChange={(e) => {
+                setSelectedOption(e);
+              }}
+              options={options}
+              styles={customStyles}
+            />
+          </div>
+
+          <Editor
+            height="100%"
+            theme="vs-dark"
+            language={selectOption.value}
+            value="// some comment"
           />
         </div>
-
-        <MonacoEditor
-          height="80vh"
-          theme="vs-dark"
-          language={selectedLanguage.value}
-          value="// some comment"
-        />
       </div>
-    </div>
+    </>
   );
 };
 
