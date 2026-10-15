@@ -1,13 +1,13 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #000;
+  background: #09090b;
   color: #fff;
 }
 
@@ -19,4 +19,48 @@ body{
   border-radius: 10px;
   cursor: pointer;
   font-weight: 500;
+  /* NEW: gradient + glow for an AI feel */
+  background: linear-gradient(135deg, #9333ea, #6d28d9);
+  box-shadow: 0 0 18px rgba(147, 51, 234, 0.35);
+  transition: all 0.3s ease;
 }
+
+.btnNormal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 26px rgba(147, 51, 234, 0.6);
+}
+
+/* NEW: round icon buttons in navbar */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #27272a;
+}
+
+/* NEW: soft glow around the two main panels */
+.panel {
+  box-shadow: 0 0 40px rgba(147, 51, 234, 0.08);
+}
+
+/* NEW: pulsing dot shown next to the Response title */
+.ai-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a855f7;
+  animation: aiPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes aiPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.6); }
+  50% { box-shadow: 0 0 0 7px rgba(168, 85, 247, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-dot { animation: none; }
+}
+
