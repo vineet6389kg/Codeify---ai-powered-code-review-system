@@ -65,3 +65,16 @@ body {
 }
 
 .right pre { overflow-x: auto; white-space: pre-wrap; }
+
+
+
+.review h1,
+.review h2,
+.review h3,
+.review h4,
+.review h5,
+.review h6 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+}

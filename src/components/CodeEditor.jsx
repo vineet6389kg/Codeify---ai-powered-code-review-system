@@ -176,14 +176,15 @@ Code: ${code}
           </div>
 
           <div className="flex-1 min-h-0 overflow-y-auto p-3">
-            {loading ? (
+            {loading ?
               <div className="h-full flex items-center justify-center">
                 <RingLoader color="#9333ea" />
               </div>
-            ) : response ? (
-              <Markdown>{response}</Markdown>
-            ) : (
-              <div className="h-full flex flex-col items-center justify-center text-center gap-2">
+            : response ?
+              <div className="review">
+                <Markdown>{response}</Markdown>
+              </div>
+            : <div className="h-full flex flex-col items-center justify-center text-center gap-2">
                 <p className="text-xl font-semibold text-zinc-200">
                   🚀 Ready to Review
                 </p>
@@ -193,7 +194,7 @@ Code: ${code}
                   <span className="text-purple-400 font-medium">Fix Code</span>.
                 </p>
               </div>
-            )}
+            }
           </div>
         </div>
       </div>
