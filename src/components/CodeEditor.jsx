@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import Select from "react-select";
 import { GoogleGenAI } from "@google/genai";
+import Markdown from "react-markdown";
 
 const CodeEditor = () => {
   const options = [
@@ -75,13 +76,10 @@ const CodeEditor = () => {
   };
 
   const [code, setCode] = useState("");
-   const [loading, setLoading] = useState(false);
-   const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState("");
 
   const ai = new GoogleGenAI({ apiKey: "GEMINI_API_KEY" });
- 
-  
-
 
   async function reviewCode() {
     setLoading(true);
@@ -131,7 +129,16 @@ Code: ${code}
               <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
                 Fix Code
               </button>
-              <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
+              <button
+                onClick={() => {
+                  if (code == "") {
+                    alert("Please Enter the Code First");
+                  }else{
+                    reviewCode();
+                  }
+                }}
+                className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300"
+              >
                 Review
               </button>
             </div>
@@ -156,6 +163,8 @@ Code: ${code}
                 <span className="ai-dot"></span>
                 <p className="font-bold text-[17px]">Response</p>
               </div>
+              <Markdown>{response}</Markdown>
+
               <p className="text-xs text-zinc-400">AI Generated Code Review</p>
             </div>
           </div>
