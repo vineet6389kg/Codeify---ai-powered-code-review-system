@@ -1,5 +1,5 @@
 import React from "react";
-import { BrainCircuit } from "lucide-react";
+import { BrainCircuit, Sun, User } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -8,6 +8,10 @@ const Navbar = () => {
         {" "}
         <BrainCircuit size={30} color="oklch(54.1% 0.281 293.009)"/>
         <span className="text-2xl font-bold text-white ml-2">Codeify</span>
+      </div>
+      <div className="icons flex items-center gap-[20px]">
+        <i className="cursor-pointer transition-all hover:text-[#9333ea]"><Sun /></i>
+         <i className="user-icon cursor-pointer transition-all hover:text-[#9333ea]"><User /></i>
       </div>
     </div>
   );
