@@ -32,7 +32,7 @@ const CodeEditor = () => {
     { value: "powershell", label: "PowerShell" },
   ];
 
-  const [selectOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const customStyles = {
     control: (provided) => ({
