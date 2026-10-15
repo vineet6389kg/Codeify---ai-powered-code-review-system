@@ -3,6 +3,7 @@ import Editor from "@monaco-editor/react";
 import Select from "react-select";
 import { GoogleGenAI } from "@google/genai";
 import Markdown from "react-markdown";
+import { RingLoader } from "react-spinners";
 
 const CodeEditor = () => {
   const options = [
@@ -79,15 +80,17 @@ const CodeEditor = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
 
-  const ai = new GoogleGenAI({ apiKey: "GEMINI_API_KEY" });
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  console.log("key check:", apiKey?.slice(0, 4), apiKey?.length);
+  const ai = new GoogleGenAI({ apiKey });
 
   async function reviewCode() {
     setLoading(true);
     setResponse("");
-    setLoading(true);
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: `You are an expert-level software developer, skilled in writing efficient, clean, and advanced code.
+    try {
+      const result = await ai.models.generateContent({
+        model: "gemini-3.5-flash-lite",
+        contents: `You are an expert-level software developer, skilled in writing efficient, clean, and advanced code.
 I’m sharing a piece of code written in ${selectedOption.value}.
 Your job is to deeply review this code and provide the following:
 
@@ -102,9 +105,14 @@ Analyze it like a senior developer reviewing a pull request.
 
 Code: ${code}
 `,
-    });
-    setResponse(response.text);
-    setLoading(false);
+      });
+      setResponse(result.text);
+    } catch (err) {
+      console.error(err);
+      setResponse("Error: " + err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -133,7 +141,7 @@ Code: ${code}
                 onClick={() => {
                   if (code == "") {
                     alert("Please Enter the Code First");
-                  }else{
+                  } else {
                     reviewCode();
                   }
                 }}
@@ -156,28 +164,36 @@ Code: ${code}
             options={{ fontSize: 15, minimap: { enabled: false } }}
           />
         </div>
-        <div className="left panel border-b-[1px] !border-[#fff] !p-[10px] bg-zinc-900 w-[50%] h-[100%] flex flex-col">
-          <div className="topTab flex items-center justify-between h-[60px] border-b border-t border-zinc-600">
+        <div className="left panel border-b-[1px] !border-[#fff] !p-[10px] bg-zinc-900 w-[50%] h-[100%] flex flex-col overflow-hidden">
+          <div className="topTab flex items-center justify-between h-[60px] shrink-0 border-b border-t border-zinc-600">
             <div>
               <div className="flex items-center gap-2">
                 <span className="ai-dot"></span>
                 <p className="font-bold text-[17px]">Response</p>
               </div>
-              <Markdown>{response}</Markdown>
-
               <p className="text-xs text-zinc-400">AI Generated Code Review</p>
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col items-center justify-center text-center gap-2">
-            <p className="text-xl font-semibold text-zinc-200">
-              🚀 Ready to Review
-            </p>
-            <p className="text-zinc-400">
-              Select a language, write your code in the editor, and click{" "}
-              <span className="text-purple-400 font-medium">Review</span> or{" "}
-              <span className="text-purple-400 font-medium">Fix Code</span>.
-            </p>
+          <div className="flex-1 min-h-0 overflow-y-auto p-3">
+            {loading ? (
+              <div className="h-full flex items-center justify-center">
+                <RingLoader color="#9333ea" />
+              </div>
+            ) : response ? (
+              <Markdown>{response}</Markdown>
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-center gap-2">
+                <p className="text-xl font-semibold text-zinc-200">
+                  🚀 Ready to Review
+                </p>
+                <p className="text-zinc-400">
+                  Select a language, write your code in the editor, and click{" "}
+                  <span className="text-purple-400 font-medium">Review</span> or{" "}
+                  <span className="text-purple-400 font-medium">Fix Code</span>.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

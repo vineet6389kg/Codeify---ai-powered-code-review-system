@@ -64,3 +64,4 @@ body {
   .ai-dot { animation: none; }
 }
 
+.right pre { overflow-x: auto; white-space: pre-wrap; }
