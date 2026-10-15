@@ -74,12 +74,34 @@ const CodeEditor = () => {
     }),
   };
 
+  const [code, setCode] = useState("");
 
-  const ai = new GoogleGenAI({apiKey:"GEMINI_API_KEY"});
+  const ai = new GoogleGenAI({ apiKey: "GEMINI_API_KEY" });
 
+  async function reviewCode() {
+    setResponse("");
+    setLoading(true);
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: `You are an expert-level software developer, skilled in writing efficient, clean, and advanced code.
+I’m sharing a piece of code written in ${selectedOption.value}.
+Your job is to deeply review this code and provide the following:
 
+1️⃣ A quality rating: Better, Good, Normal, or Bad.
+2️⃣ Detailed suggestions for improvement, including best practices and advanced alternatives.
+3️⃣ A clear explanation of what the code does, step by step.
+4️⃣ A list of any potential bugs or logical errors, if found.
+5️⃣ Identification of syntax errors or runtime errors, if present.
+6️⃣ Solutions and recommendations on how to fix each identified issue.
 
-return (
+Analyze it like a senior developer reviewing a pull request.
+
+Code: ${code}
+`,
+    });
+  }
+
+  return (
     <>
       <div
         className="main flex  justify-between p-5 gap-5"
@@ -112,7 +134,10 @@ return (
             height="100%"
             theme="vs-dark"
             language={selectOption.value}
-            value="// some comment"
+            value={code}
+            onChange={(e) => {
+              setCode(e);
+            }}
             options={{ fontSize: 15, minimap: { enabled: false } }}
           />
         </div>
@@ -128,7 +153,9 @@ return (
           </div>
 
           <div className="flex-1 flex flex-col items-center justify-center text-center gap-2">
-            <p className="text-xl font-semibold text-zinc-200">🚀 Ready to Review</p>
+            <p className="text-xl font-semibold text-zinc-200">
+              🚀 Ready to Review
+            </p>
             <p className="text-zinc-400">
               Select a language, write your code in the editor, and click{" "}
               <span className="text-purple-400 font-medium">Review</span> or{" "}
