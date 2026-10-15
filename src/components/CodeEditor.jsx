@@ -78,7 +78,10 @@ const CodeEditor = () => {
 
   const ai = new GoogleGenAI({ apiKey: "GEMINI_API_KEY" });
 
+  const [loading, setLoading] = useState(false);
+
   async function reviewCode() {
+    setLoading(true);
     setResponse("");
     setLoading(true);
     const response = await ai.models.generateContent({
@@ -99,6 +102,8 @@ Analyze it like a senior developer reviewing a pull request.
 Code: ${code}
 `,
     });
+    console.log(response.text);
+    setLoading(false);
   }
 
   return (
@@ -112,7 +117,7 @@ Code: ${code}
           <div className="tab !mt-5 !px-5 !mb-3 w-full flex items-center justify-between mb-3">
             <div className="w-[250px]">
               <Select
-                value={selectOption}
+                value={selectedOption}
                 onChange={setSelectedOption}
                 options={options}
                 styles={customStyles}
@@ -133,7 +138,7 @@ Code: ${code}
           <Editor
             height="100%"
             theme="vs-dark"
-            language={selectOption.value}
+            language={selectedOption.value}
             value={code}
             onChange={(e) => {
               setCode(e);
