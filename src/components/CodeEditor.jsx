@@ -3,33 +3,33 @@ import Editor from "@monaco-editor/react";
 import Select from "react-select";
 
 const CodeEditor = () => {
- const options = [
-  { value: "javascript", label: "JavaScript" },
-  { value: "typescript", label: "TypeScript" },
-  { value: "python", label: "Python" },
-  { value: "java", label: "Java" },
-  { value: "c", label: "C" },
-  { value: "cpp", label: "C++" },
-  { value: "csharp", label: "C#" },
-  { value: "go", label: "Go" },
-  { value: "rust", label: "Rust" },
-  { value: "php", label: "PHP" },
-  { value: "ruby", label: "Ruby" },
-  { value: "swift", label: "Swift" },
-  { value: "kotlin", label: "Kotlin" },
-  { value: "scala", label: "Scala" },
-  { value: "dart", label: "Dart" },
-  { value: "r", label: "R" },
-  { value: "sql", label: "SQL" },
-  { value: "html", label: "HTML" },
-  { value: "css", label: "CSS" },
-  { value: "json", label: "JSON" },
-  { value: "xml", label: "XML" },
-  { value: "yaml", label: "YAML" },
-  { value: "markdown", label: "Markdown" },
-  { value: "shell", label: "Shell Script" },
-  { value: "powershell", label: "PowerShell" },
-];
+  const options = [
+    { value: "javascript", label: "JavaScript" },
+    { value: "typescript", label: "TypeScript" },
+    { value: "python", label: "Python" },
+    { value: "java", label: "Java" },
+    { value: "c", label: "C" },
+    { value: "cpp", label: "C++" },
+    { value: "csharp", label: "C#" },
+    { value: "go", label: "Go" },
+    { value: "rust", label: "Rust" },
+    { value: "php", label: "PHP" },
+    { value: "ruby", label: "Ruby" },
+    { value: "swift", label: "Swift" },
+    { value: "kotlin", label: "Kotlin" },
+    { value: "scala", label: "Scala" },
+    { value: "dart", label: "Dart" },
+    { value: "r", label: "R" },
+    { value: "sql", label: "SQL" },
+    { value: "html", label: "HTML" },
+    { value: "css", label: "CSS" },
+    { value: "json", label: "JSON" },
+    { value: "xml", label: "XML" },
+    { value: "yaml", label: "YAML" },
+    { value: "markdown", label: "Markdown" },
+    { value: "shell", label: "Shell Script" },
+    { value: "powershell", label: "PowerShell" },
+  ];
 
   const [selectOption, setSelectedOption] = useState(options[0]);
 
@@ -90,6 +90,9 @@ const CodeEditor = () => {
                 options={options}
                 styles={customStyles}
               />
+              <button className="btnNormal bg-zinc-900 min-w-[120px]">
+                Review
+              </button>
             </div>
           </div>
 

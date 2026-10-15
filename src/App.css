@@ -10,3 +10,12 @@ body{
   background-color: #000;
   color: #fff;
 }
+
+.btnNormal {
+   padding: 10px;
+   color: #fff;
+   border-radius: 10px;
+   border: 0;
+   outline: 0;
+   cursor: pointer;
+}
