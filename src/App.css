@@ -12,10 +12,11 @@ body{
 }
 
 .btnNormal {
-   padding: 10px;
-   color: #fff;
-   border-radius: 10px;
-   border: 0;
-   outline: 0;
-   cursor: pointer;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
 }

@@ -81,7 +81,7 @@ const CodeEditor = () => {
       >
         <div className="left h-[80%] w-[50%]">
           <div className="mb-4 w-[250px]">
-            <div className="tab">
+            <div className="tab w-full flex items-center">
               <Select
                 value={selectOption}
                 onChange={(e) => {
@@ -90,8 +90,11 @@ const CodeEditor = () => {
                 options={options}
                 styles={customStyles}
               />
-              <button className="btnNormal bg-zinc-900 min-w-[120px]">
+              <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
                 Review
+              </button>
+              <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
+                Fix
               </button>
             </div>
           </div>
