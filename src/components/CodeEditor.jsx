@@ -75,10 +75,13 @@ const CodeEditor = () => {
   };
 
   const [code, setCode] = useState("");
+   const [loading, setLoading] = useState(false);
+   const [response, setResponse] = useState("");
 
   const ai = new GoogleGenAI({ apiKey: "GEMINI_API_KEY" });
+ 
+  
 
-  const [loading, setLoading] = useState(false);
 
   async function reviewCode() {
     setLoading(true);
@@ -102,7 +105,7 @@ Analyze it like a senior developer reviewing a pull request.
 Code: ${code}
 `,
     });
-    console.log(response.text);
+    setResponse(response.text);
     setLoading(false);
   }
 
