@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import Select from "react-select";
+import { GoogleGenAI } from "@google/genai";
 
 const CodeEditor = () => {
   const options = [
@@ -73,7 +74,10 @@ const CodeEditor = () => {
     }),
   };
 
-  // Keep your existing imports, state, options and customStyles above this line.
+
+  const ai = new GoogleGenAI({apiKey:"GEMINI_API_KEY"});
+
+
 
 return (
     <>
