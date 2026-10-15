@@ -107,3 +107,67 @@ body {
 *::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+.review pre {
+  background: #0d1117;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0.75rem 0;
+  overflow-x: auto;
+}
+
+.review pre code {
+  background: transparent;
+  font-size: 0.9rem;
+}
+
+.review p code,
+.review li code {
+  background: #27272a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+/* **bold** text: stands out in purple */
+.review strong {
+  color: #c084fc;
+  font-weight: 700;
+}
+
+/* *italic* text */
+.review em {
+  color: #a1a1aa;
+  font-style: italic;
+}
+
+/* `inline code`: highlighted chip */
+.review p code,
+.review li code {
+  background: #3b0764;
+  color: #e9d5ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* > quotes */
+.review blockquote {
+  border-left: 3px solid #9333ea;
+  background: #27272a;
+  padding: 8px 12px;
+  margin: 0.75rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+/* links */
+.review a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+/* the --- lines */
+.review hr {
+  border-color: #3f3f46;
+  margin: 1rem 0;
+}
+

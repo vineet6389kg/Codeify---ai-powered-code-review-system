@@ -4,6 +4,8 @@ import Select from "react-select";
 import { GoogleGenAI } from "@google/genai";
 import Markdown from "react-markdown";
 import { RingLoader } from "react-spinners";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css";
 
 const CodeEditor = () => {
   const options = [
@@ -182,7 +184,9 @@ Code: ${code}
               </div>
             : response ?
               <div className="review">
-                <Markdown>{response}</Markdown>
+                <Markdown rehypePlugins={[rehypeHighlight]}>
+                  {response}
+                </Markdown>
               </div>
             : <div className="h-full flex flex-col items-center justify-center text-center gap-2">
                 <p className="text-xl font-semibold text-zinc-200">
