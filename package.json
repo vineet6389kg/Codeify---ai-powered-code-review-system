@@ -16,6 +16,7 @@
     "lucide-react": "^1.57.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
     "react-select": "^5.10.2",
     "tailwindcss": "^4.3.3"
   },
