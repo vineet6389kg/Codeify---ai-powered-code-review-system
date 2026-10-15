@@ -79,32 +79,40 @@ const CodeEditor = () => {
         className="main flex items-center justify-between"
         style={{ height: "calc(100vh - 90px)" }}
       >
-        <div className="left h-[80%] w-[50%]">
-          <div className="mb-4 w-[250px]">
-            <div className="tab w-full flex items-center">
+        <div className="left h-[80%] w-[50%] flex flex-col">
+
+          {/* Top Bar */}
+          <div className="tab w-full flex items-center justify-between mb-3">
+
+            <div className="w-[250px]">
               <Select
                 value={selectOption}
-                onChange={(e) => {
-                  setSelectedOption(e);
-                }}
+                onChange={setSelectedOption}
                 options={options}
                 styles={customStyles}
               />
+            </div>
+
+            <div className="flex items-center gap-2">
               <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
                 Review
               </button>
+
               <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
                 Fix
               </button>
             </div>
+
           </div>
 
+          {/* Monaco Editor */}
           <Editor
             height="100%"
             theme="vs-dark"
             language={selectOption.value}
             value="// some comment"
           />
+
         </div>
       </div>
     </>
