@@ -88,7 +88,6 @@ const CodeEditor = () => {
   const FREE_LIMIT = 3;
 
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-  console.log("key check:", apiKey?.slice(0, 4), apiKey?.length);
   const ai = new GoogleGenAI({ apiKey });
 
   async function reviewCode() {
@@ -114,6 +113,10 @@ Code: ${code}
 `,
       });
       setResponse(result.text);
+      if (!user) {
+        const used = Number(localStorage.getItem("freeReviews") || 0);
+        localStorage.setItem("freeReviews", used + 1);
+      } 
     } catch (err) {
       console.error(err);
       setResponse("Error: " + err.message);
@@ -160,7 +163,6 @@ Code: ${code}
                       alert("Free limit reached. Please log in to continue.");
                       return;
                     }
-                    localStorage.setItem("freeReviews", used + 1);
                   }
 
                   reviewCode();
