@@ -6,6 +6,7 @@ import Markdown from "react-markdown";
 import { RingLoader } from "react-spinners";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
+import { useAuth } from "../context/AuthContext";
 
 const CodeEditor = () => {
   const options = [
@@ -82,6 +83,8 @@ const CodeEditor = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
 
+  const { user } = useAuth();
+
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   console.log("key check:", apiKey?.slice(0, 4), apiKey?.length);
   const ai = new GoogleGenAI({ apiKey });
@@ -141,7 +144,9 @@ Code: ${code}
               </button>
               <button
                 onClick={() => {
-                  if (code == "") {
+                  if (!user) {
+                    alert("Please log in to review your code");
+                  } else if (code == "") {
                     alert("Please Enter the Code First");
                   } else {
                     reviewCode();
