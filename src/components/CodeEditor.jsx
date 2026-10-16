@@ -7,6 +7,8 @@ import { RingLoader } from "react-spinners";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import { useAuth } from "../context/AuthContext";
+import LimitModal from "./LimitModal";
+import AuthModal from "./AuthModal";
 
 const CodeEditor = () => {
   const options = [
@@ -82,6 +84,11 @@ const CodeEditor = () => {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
+  const [freeUsed, setFreeUsed] = useState(
+    Number(localStorage.getItem("freeReviews") || 0),
+  );
+  const [showLimit, setShowLimit] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
 
   const { user } = useAuth();
 
@@ -116,7 +123,7 @@ Code: ${code}
       if (!user) {
         const used = Number(localStorage.getItem("freeReviews") || 0);
         localStorage.setItem("freeReviews", used + 1);
-      } 
+      }
     } catch (err) {
       console.error(err);
       setResponse("Error: " + err.message);
@@ -155,14 +162,12 @@ Code: ${code}
                   }
 
                   if (!user) {
-                    const used = Number(
-                      localStorage.getItem("freeReviews") || 0,
-                    );
-
-                    if (used >= FREE_LIMIT) {
-                      alert("Free limit reached. Please log in to continue.");
+                    if (freeUsed >= FREE_LIMIT) {
+                      setShowLimit(true);
                       return;
                     }
+                    localStorage.setItem("freeReviews", freeUsed + 1);
+                    setFreeUsed(freeUsed + 1);
                   }
 
                   reviewCode();
