@@ -4,7 +4,7 @@ const ThemeContext = createContext(null);
 
 function getInitialTheme() {
   const saved = localStorage.getItem("theme");
-  return saved === "light" || saved === "dark" ? saved : "dark";
+  return saved === "light" || saved === "dark" ? saved : "light";
 }
 
 export const ThemeProvider = ({ children }) => {

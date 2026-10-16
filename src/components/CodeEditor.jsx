@@ -83,7 +83,7 @@ const CodeEditor = () => {
     }),
   };
 
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(`// Exampele Code \n console.log("Hello, World!");`);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
   const [freeUsed, setFreeUsed] = useState(
