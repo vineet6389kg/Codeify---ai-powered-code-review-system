@@ -7,6 +7,7 @@ import { RingLoader } from "react-spinners";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import LimitModal from "./LimitModal";
 import AuthModal from "./AuthModal";
 
@@ -44,9 +45,9 @@ const CodeEditor = () => {
   const customStyles = {
     control: (provided) => ({
       ...provided,
-      backgroundColor: "#18181b",
-      borderColor: "#3f3f46",
-      color: "white",
+      backgroundColor: "var(--surface)",
+      borderColor: "var(--border)",
+      color: "var(--text)",
       boxShadow: "none",
       "&:hover": {
         borderColor: "#9333ea",
@@ -55,29 +56,29 @@ const CodeEditor = () => {
 
     singleValue: (provided) => ({
       ...provided,
-      color: "white",
+      color: "var(--text)",
     }),
 
     menu: (provided) => ({
       ...provided,
-      backgroundColor: "#18181b",
+      backgroundColor: "var(--surface)",
     }),
 
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isFocused ? "#9333ea" : "#18181b",
-      color: "white",
+      backgroundColor: state.isFocused ? "#9333ea" : "var(--surface)",
+      color: state.isFocused ? "#fff" : "var(--text)",
       cursor: "pointer",
     }),
 
     placeholder: (provided) => ({
       ...provided,
-      color: "#a1a1aa",
+      color: "var(--muted)",
     }),
 
     input: (provided) => ({
       ...provided,
-      color: "white",
+      color: "var(--text)",
     }),
   };
 
@@ -91,6 +92,7 @@ const CodeEditor = () => {
   const [showAuth, setShowAuth] = useState(false);
 
   const { user } = useAuth();
+  const { theme } = useTheme();
 
   const FREE_LIMIT = 3;
 
@@ -178,16 +180,16 @@ Code: ${code}
           {/* Free reviews counter */}
           {!user && (
             <p className="text-xs text-zinc-400 !px-5 !mb-2">
-              {freeUsed < FREE_LIMIT ?
-                `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
-              : "You have used all free reviews. Log in to continue."}
+              {freeUsed < FREE_LIMIT
+                ? `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
+                : "You have used all free reviews. Log in to continue."}
             </p>
           )}
 
           {/* Monaco Editor */}
           <Editor
             height="100%"
-            theme="vs-dark"
+            theme={theme === "dark" ? "vs-dark" : "light"}
             language={selectedOption.value}
             value={code}
             onChange={(e) => {
@@ -196,7 +198,7 @@ Code: ${code}
             options={{ fontSize: 15, minimap: { enabled: false } }}
           />
         </div>
-        <div className="left panel border-b-[1px] !border-[#fff] !p-[10px] bg-zinc-900 w-[50%] h-[100%] flex flex-col overflow-hidden">
+        <div className="left panel border border-zinc-800 !p-[10px] bg-zinc-900 w-[50%] h-[100%] flex flex-col overflow-hidden">
           <div className="topTab flex items-center justify-between h-[60px] shrink-0 border-b border-t border-zinc-600">
             <div>
               <div className="flex items-center gap-2">
