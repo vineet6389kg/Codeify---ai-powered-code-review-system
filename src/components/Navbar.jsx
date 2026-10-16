@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { BrainCircuit, Sun, User, LogOut } from "lucide-react";
+import { BrainCircuit, Sun, Moon, User, LogOut } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import AuthModal from "./AuthModal";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -37,8 +39,12 @@ const Navbar = () => {
       </div>
 
       <div className="icons flex items-center gap-[12px]">
-        <i className="icon-btn cursor-pointer transition-all hover:text-[#9333ea] hover:bg-zinc-800">
-          <Sun size={20} />
+        <i
+          onClick={toggleTheme}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          className="icon-btn cursor-pointer transition-all hover:text-[#9333ea] hover:bg-zinc-800"
+        >
+          {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
         </i>
 
         <div className="relative">
