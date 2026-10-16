@@ -181,7 +181,7 @@ Code: ${code}
             language={selectedOption.value}
             value={code}
             onChange={(e) => {
-              setCode(e);
+              setCode(e ?? "");
             }}
             options={{ fontSize: 15, minimap: { enabled: false } }}
           />
