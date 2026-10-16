@@ -19,7 +19,6 @@ body {
   border-radius: 10px;
   cursor: pointer;
   font-weight: 500;
-  /* NEW: gradient + glow for an AI feel */
   background: linear-gradient(135deg, #9333ea, #6d28d9);
   box-shadow: 0 0 18px rgba(147, 51, 234, 0.35);
   transition: all 0.3s ease;
@@ -30,7 +29,6 @@ body {
   box-shadow: 0 0 26px rgba(147, 51, 234, 0.6);
 }
 
-/* NEW: round icon buttons in navbar */
 .icon-btn {
   display: flex;
   align-items: center;
@@ -41,12 +39,10 @@ body {
   border: 1px solid #27272a;
 }
 
-/* NEW: soft glow around the two main panels */
 .panel {
   box-shadow: 0 0 40px rgba(147, 51, 234, 0.08);
 }
 
-/* NEW: pulsing dot shown next to the Response title */
 .ai-dot {
   width: 8px;
   height: 8px;
@@ -64,28 +60,12 @@ body {
   .ai-dot { animation: none; }
 }
 
-.right pre { overflow-x: auto; white-space: pre-wrap; }
-
-
-
-.review h1,
-.review h2,
-.review h3,
-.review h4,
-.review h5,
-.review h6 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 1rem 0 0.5rem;
-}
-
-/* Firefox */
+/* ---------- scrollbar ---------- */
 * {
   scrollbar-width: thin;
   scrollbar-color: #3f3f46 transparent;
 }
 
-/* Chrome, Edge, Safari */
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -108,49 +88,28 @@ body {
   background: transparent;
 }
 
-.review pre {
-  background: #0d1117;
-  border: 1px solid #3f3f46;
-  border-radius: 8px;
-  padding: 12px;
-  margin: 0.75rem 0;
-  overflow-x: auto;
+/* ---------- review text ---------- */
+.review h1,
+.review h2,
+.review h3,
+.review h4,
+.review h5,
+.review h6 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
 }
 
-.review pre code {
-  background: transparent;
-  font-size: 0.9rem;
-}
-
-.review p code,
-.review li code {
-  background: #27272a;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-/* **bold** text: stands out in purple */
 .review strong {
   color: #c084fc;
   font-weight: 700;
 }
 
-/* *italic* text */
 .review em {
   color: #a1a1aa;
   font-style: italic;
 }
 
-/* `inline code`: highlighted chip */
-.review p code,
-.review li code {
-  background: #3b0764;
-  color: #e9d5ff;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-/* > quotes */
 .review blockquote {
   border-left: 3px solid #9333ea;
   background: #27272a;
@@ -159,15 +118,44 @@ body {
   border-radius: 0 6px 6px 0;
 }
 
-/* links */
 .review a {
   color: #60a5fa;
   text-decoration: underline;
 }
 
-/* the --- lines */
 .review hr {
   border-color: #3f3f46;
   margin: 1rem 0;
 }
 
+/* ---------- inline code: only code NOT inside a block ---------- */
+.review :not(pre) > code {
+  background: #3b0764;
+  color: #e9d5ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* ---------- code blocks: dark editor look ---------- */
+.review pre {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 0.75rem 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.review pre code,
+.review pre code.hljs {
+  display: block;
+  background: transparent;
+  color: #c9d1d9;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}

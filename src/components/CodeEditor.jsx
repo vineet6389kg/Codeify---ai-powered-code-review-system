@@ -178,9 +178,9 @@ Code: ${code}
           {/* Free reviews counter */}
           {!user && (
             <p className="text-xs text-zinc-400 !px-5 !mb-2">
-              {freeUsed < FREE_LIMIT
-                ? `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
-                : "You have used all free reviews. Log in to continue."}
+              {freeUsed < FREE_LIMIT ?
+                `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
+              : "You have used all free reviews. Log in to continue."}
             </p>
           )}
 
