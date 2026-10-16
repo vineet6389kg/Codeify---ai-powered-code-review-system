@@ -120,10 +120,6 @@ Code: ${code}
 `,
       });
       setResponse(result.text);
-      if (!user) {
-        const used = Number(localStorage.getItem("freeReviews") || 0);
-        localStorage.setItem("freeReviews", used + 1);
-      }
     } catch (err) {
       console.error(err);
       setResponse("Error: " + err.message);
@@ -179,6 +175,15 @@ Code: ${code}
             </div>
           </div>
 
+          {/* Free reviews counter */}
+          {!user && (
+            <p className="text-xs text-zinc-400 !px-5 !mb-2">
+              {freeUsed < FREE_LIMIT
+                ? `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
+                : "You have used all free reviews. Log in to continue."}
+            </p>
+          )}
+
           {/* Monaco Editor */}
           <Editor
             height="100%"
@@ -227,6 +232,19 @@ Code: ${code}
           </div>
         </div>
       </div>
+
+      {showLimit && (
+        <LimitModal
+          limit={FREE_LIMIT}
+          onClose={() => setShowLimit(false)}
+          onLogin={() => {
+            setShowLimit(false);
+            setShowAuth(true);
+          }}
+        />
+      )}
+
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </>
   );
 };
