@@ -10,6 +10,7 @@ import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 import LimitModal from "./LimitModal";
 import AuthModal from "./AuthModal";
+import EmptyCodeModal from "./EmptyCodeModal";
 
 const CodeEditor = () => {
   const options = [
@@ -90,6 +91,7 @@ const CodeEditor = () => {
   );
   const [showLimit, setShowLimit] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
+  const [showEmpty, setShowEmpty] = useState(false);
 
   const { user } = useAuth();
   const { theme } = useTheme();
@@ -155,7 +157,7 @@ Code: ${code}
               <button
                 onClick={() => {
                   if (code.trim() === "") {
-                    alert("Please Enter the Code First");
+                    setShowEmpty(true);
                     return;
                   }
 
@@ -246,6 +248,7 @@ Code: ${code}
       )}
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
+      {showEmpty && <EmptyCodeModal onClose={() => setShowEmpty(false)} />}
     </>
   );
 };
