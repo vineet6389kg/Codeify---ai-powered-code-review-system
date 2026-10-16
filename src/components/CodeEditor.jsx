@@ -149,9 +149,9 @@ Code: ${code}
             </div>
 
             <div className="flex items-center gap-2">
-              <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
+              {/* <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
                 Fix Code
-              </button>
+              </button> */}
               <button
                 onClick={() => {
                   if (code.trim() === "") {
@@ -180,9 +180,9 @@ Code: ${code}
           {/* Free reviews counter */}
           {!user && (
             <p className="text-xs text-zinc-400 !px-5 !mb-2">
-              {freeUsed < FREE_LIMIT
-                ? `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
-                : "You have used all free reviews. Log in to continue."}
+              {freeUsed < FREE_LIMIT ?
+                `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
+              : "You have used all free reviews. Log in to continue."}
             </p>
           )}
 
@@ -226,8 +226,7 @@ Code: ${code}
                 </p>
                 <p className="text-zinc-400">
                   Select a language, write your code in the editor, and click{" "}
-                  <span className="text-purple-400 font-medium">Review</span> or{" "}
-                  <span className="text-purple-400 font-medium">Fix Code</span>.
+                  <span className="text-purple-400 font-medium">Review</span>.
                 </p>
               </div>
             }
