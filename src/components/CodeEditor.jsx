@@ -85,6 +85,8 @@ const CodeEditor = () => {
 
   const { user } = useAuth();
 
+  const FREE_LIMIT = 3;
+
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   console.log("key check:", apiKey?.slice(0, 4), apiKey?.length);
   const ai = new GoogleGenAI({ apiKey });
@@ -144,13 +146,24 @@ Code: ${code}
               </button>
               <button
                 onClick={() => {
-                  if (!user) {
-                    alert("Please log in to review your code");
-                  } else if (code == "") {
+                  if (code.trim() === "") {
                     alert("Please Enter the Code First");
-                  } else {
-                    reviewCode();
+                    return;
                   }
+
+                  if (!user) {
+                    const used = Number(
+                      localStorage.getItem("freeReviews") || 0,
+                    );
+
+                    if (used >= FREE_LIMIT) {
+                      alert("Free limit reached. Please log in to continue.");
+                      return;
+                    }
+                    localStorage.setItem("freeReviews", used + 1);
+                  }
+
+                  reviewCode();
                 }}
                 className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300"
               >
