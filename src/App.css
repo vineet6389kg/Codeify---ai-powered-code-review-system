@@ -7,8 +7,9 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #09090b;
-  color: #fff;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btnNormal {
@@ -128,7 +129,7 @@ body {
   margin: 1rem 0;
 }
 
-/* ---------- inline code: only code NOT inside a block ---------- */
+/* inline code: only code NOT inside a block */
 .review :not(pre) > code {
   background: #3b0764;
   color: #e9d5ff;
@@ -137,7 +138,7 @@ body {
   font-size: 0.9em;
 }
 
-/* ---------- code blocks: dark editor look ---------- */
+/* code blocks: dark editor look */
 .review pre {
   background: #0d1117;
   border: 1px solid #30363d;
@@ -159,3 +160,59 @@ body {
   font-size: 0.9rem;
   line-height: 1.6;
 }
+
+/* ---------- theme variables ---------- */
+/* DARK is the default */
+:root {
+  --bg: #09090b;
+  --text: #ffffff;
+  --surface: #18181b;
+  --border: #3f3f46;
+  --muted: #a1a1aa;
+  color-scheme: dark;
+}
+
+/* LIGHT only when data-theme="light" */
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --text: #18181b;
+  --surface: #f4f4f5;
+  --border: #d4d4d8;
+  --muted: #52525b;
+  color-scheme: light;
+
+  /* flip Tailwind's zinc scale so existing classes switch automatically */
+  --color-white: #18181b;
+  --color-zinc-50: #09090b;
+  --color-zinc-100: #18181b;
+  --color-zinc-200: #27272a;
+  --color-zinc-300: #3f3f46;
+  --color-zinc-400: #52525b;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #a1a1aa;
+  --color-zinc-700: #d4d4d8;
+  --color-zinc-800: #e4e4e7;
+  --color-zinc-900: #f4f4f5;
+  --color-zinc-950: #fafafa;
+}
+
+/* purple buttons keep white text in both themes */
+.bg-purple-600 {
+  color: #fff;
+}
+
+/* review text in light mode (code blocks stay dark) */
+:root[data-theme="light"] .review strong { color: #7e22ce; }
+:root[data-theme="light"] .review em { color: #52525b; }
+:root[data-theme="light"] .review a { color: #2563eb; }
+:root[data-theme="light"] .review blockquote { background: #f4f4f5; }
+:root[data-theme="light"] .review hr { border-color: #d4d4d8; }
+:root[data-theme="light"] .review :not(pre) > code {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+/* misc in light mode */
+:root[data-theme="light"] .icon-btn { border-color: #e4e4e7; }
+:root[data-theme="light"] * { scrollbar-color: #d4d4d8 transparent; }
+:root[data-theme="light"] *::-webkit-scrollbar-thumb { background-color: #d4d4d8; }
