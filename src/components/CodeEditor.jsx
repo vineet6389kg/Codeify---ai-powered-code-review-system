@@ -134,14 +134,15 @@ Code: ${code}
 
   return (
     <>
-      <div
-        className="main flex  justify-between p-5 gap-5"
-        style={{ height: "calc(100vh - 90px)" }}
-      >
-        <div className="left panel w-[50%] h-full rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900">
+      {/* CHANGED: stacks on mobile, side by side from md up; style prop removed */}
+      <div className="main flex flex-col md:flex-row justify-between !p-3 md:!p-5 gap-3 md:gap-5 md:h-[calc(100vh_-_90px)]">
+        {/* CHANGED: full width and 60vh tall on mobile */}
+        <div className="left panel w-full md:w-[50%] h-[60vh] md:h-full rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900">
           {/* Top Bar */}
-          <div className="tab !mt-5 !px-5 !mb-3 w-full flex items-center justify-between mb-3">
-            <div className="w-[250px]">
+          {/* CHANGED: smaller padding on mobile, gap added */}
+          <div className="tab !mt-3 md:!mt-5 !px-3 md:!px-5 !mb-3 w-full flex items-center justify-between gap-2">
+            {/* CHANGED: dropdown fills free space on mobile */}
+            <div className="flex-1 min-w-0 md:flex-none md:w-[250px]">
               <Select
                 value={selectedOption}
                 onChange={setSelectedOption}
@@ -150,7 +151,8 @@ Code: ${code}
               />
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* CHANGED: shrink-0 so the Review button keeps its size */}
+            <div className="flex items-center gap-2 shrink-0">
               {/* <button className="btnNormal bg-purple-600 hover:bg-purple-700 transition-all duration-300">
                 Fix Code
               </button> */}
@@ -180,8 +182,9 @@ Code: ${code}
           </div>
 
           {/* Free reviews counter */}
+          {/* CHANGED: smaller padding on mobile */}
           {!user && (
-            <p className="text-xs text-zinc-400 !px-5 !mb-2">
+            <p className="text-xs text-zinc-400 !px-3 md:!px-5 !mb-2">
               {freeUsed < FREE_LIMIT ?
                 `${FREE_LIMIT - freeUsed} of ${FREE_LIMIT} free reviews left. After that you need to log in.`
               : "You have used all free reviews. Log in to continue."}
@@ -200,7 +203,8 @@ Code: ${code}
             options={{ fontSize: 15, minimap: { enabled: false } }}
           />
         </div>
-        <div className="left panel border border-zinc-800 !p-[10px] bg-zinc-900 w-[50%] h-[100%] flex flex-col overflow-hidden">
+        {/* CHANGED: full width and 60vh tall on mobile, rounded corners added */}
+        <div className="left panel border border-zinc-800 !p-[10px] bg-zinc-900 w-full md:w-[50%] h-[60vh] md:h-[100%] rounded-xl flex flex-col overflow-hidden">
           <div className="topTab flex items-center justify-between h-[60px] shrink-0 border-b border-t border-zinc-600">
             <div>
               <div className="flex items-center gap-2">

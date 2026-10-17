@@ -24,10 +24,7 @@ const Navbar = () => {
   }
 
   return (
-    <div
-      className="nav flex items-center justify-between px-[150px] h-[90px] bg-zinc-900 border-b border-zinc-800"
-      style={{ padding: "0px 150px" }}
-    >
+    <div className="nav flex items-center justify-between !px-4 md:!px-10 lg:!px-[150px] h-[90px] bg-zinc-900 border-b border-zinc-800">
       <div className="logo flex items-center gap-[10px]">
         {" "}
         <div className="logo-badge flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-purple-600/10 border border-purple-500/30">
@@ -41,10 +38,14 @@ const Navbar = () => {
       <div className="icons flex items-center gap-[12px]">
         <i
           onClick={toggleTheme}
-          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          title={
+            theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+          }
           className="icon-btn cursor-pointer transition-all hover:text-[#9333ea] hover:bg-zinc-800"
         >
-          {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+          {theme === "dark" ?
+            <Sun size={20} />
+          : <Moon size={20} />}
         </i>
 
         <div className="relative">
@@ -52,13 +53,11 @@ const Navbar = () => {
             onClick={handleUserClick}
             className="icon-btn user-icon cursor-pointer transition-all hover:text-[#9333ea] hover:bg-zinc-800"
           >
-            {user ? (
+            {user ?
               <span className="w-[28px] h-[28px] rounded-full bg-purple-600 text-white text-sm font-semibold flex items-center justify-center">
                 {user.name.charAt(0).toUpperCase()}
               </span>
-            ) : (
-              <User size={20} />
-            )}
+            : <User size={20} />}
           </i>
 
           {user && menuOpen && (
