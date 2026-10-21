@@ -2,11 +2,9 @@
 
 Codeify is a full-stack web app that reviews your code like a senior developer. Paste code in the editor, pick a language, and get an instant AI review with a quality rating, step-by-step explanation, bug detection, and fix suggestions.
 
-**🔗 Live Demo:** [https://codeify-ai-delta.vercel.app/]
+**🔗 Live Demo:** [https://codeify-ai-delta.vercel.app](https://codeify-ai-delta.vercel.app)
 
 > ⏳ The backend runs on Render's free tier, so the **first login or signup can take 30-60 seconds** while the server wakes up. After that it is fast.
-
-**Demo login (optional):** `demo@codeify.com` / `Demo@123`
 
 ---
 
@@ -128,9 +126,9 @@ Codeify/
 ### 1. Clone the repository
 
 ```bash
-git clonehttps://github.com/vineet6389kg
-cd your-repo-name https://github.com/vineet6389kg/Codeify---ai-powered-code-review-system
-``` 
+git clone https://github.com/vineet6389kg/Codeify---ai-powered-code-review-system.git
+cd Codeify---ai-powered-code-review-system
+```
 
 ### 2. Set up the backend
 
@@ -238,14 +236,19 @@ Open `http://localhost:5173`.
 
 ## 👨‍💻 Author
 
-**Vineet Kumar**
-B.Tech Computer Science and Engineering, 3rd Year (5th Semester)
+## 👨‍💻 Author
+
+## 👨‍💻 Author
+
+## 👨‍💻 Author
+
+**Vineet Kumar**<br>
+B.Tech Computer Science and Engineering, 3rd Year (5th Semester)<br>
 Dr. Ram Manohar Lohia Awadh University
 
-- GitHub: [https://github.com/vineet6389kg]
-- LinkedIn: [https://www.linkedin.com/in/vineet-kumar-046373329/]
-- Email: vineetkmar9336a@gmail.com
-
+- GitHub: [vineet6389kg](https://github.com/vineet6389kg)
+- LinkedIn: [Vineet Kumar](https://www.linkedin.com/in/vineet-kumar-046373329/)
+- Email: vineetkumar9336a@gmail.com
 ---
 
 ⭐ If you found this project useful, consider giving it a star!
